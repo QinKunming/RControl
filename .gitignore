@@ -1,14 +1,16 @@
-# Rust 编译产物
-/target/
-/target_srv/
-/target_test/
-/target_win7/
+# Rust 编译产物（含各专用 target 目录）
+/target*/
 
 # 发布成品（二进制走 Release 附件发布，不入库）
 /dist/
 
-# 截图与临时验证图片
+# 截图、日志与临时验证产物
 shots/*.png
+*.log
 
 # 本机个人数据
 hosts.txt
+
+# 内部文档：仓库只保留 README.md，其余 .md 不入库
+/*.md
+!/README.md

@@ -72,8 +72,16 @@ cargo build --release
 产物：`target/release/rcontrol_server.exe`（被控端）、`target/release/rcontrol_client.exe`（主控端）。
 
 **Win7 兼容版**：Win7 上官方支持的最后一个 Rust 系列是 1.77，用
-`x86_64-pc-windows-gnu` 工具链（1.77.2）静态链接 CRT 单独编译，详见
-[开发构建说明.md](开发构建说明.md)（含依赖钉版本、GNU 工具链资源编译回退等已知坑的处理记录）。
+`x86_64-pc-windows-gnu` 工具链（1.77.2）静态链接 CRT 单独编译：
+
+```
+rustup toolchain install 1.77.2 --profile minimal
+cargo +1.77.2 build --release -p rcontrol_client --target-dir target_win7
+cargo +1.77.2 build --release -p rcontrol_server --target-dir target_win7
+```
+
+Cargo.lock 已钉好 1.77 可解析的依赖版本；GNU 工具链无 windres 时
+build.rs 自动回退 Windows SDK 的 rc.exe + cvtres.exe 编译资源。
 
 ## 快速上手
 
@@ -101,9 +109,6 @@ rcontrol_client.exe --selftest IP:端口 口令     # 11 项检查，退出码 0
 rcontrol_client.exe --view IP:端口 口令         # 跳过对话框直连
 ```
 
-完整使用细节（清单管理、画面显示策略、文件传输、锁屏登录、常见问题排错）
-见 **[使用说明.md](使用说明.md)**。
-
 ## 仓库结构
 
 ```
@@ -112,9 +117,7 @@ rcontrol_v1/
 ├── rcontrol_server/     # 被控端
 ├── rcontrol_client/     # 主控端（Win32 GUI）
 ├── shots/               # 构建/测试/截图验证脚本（PowerShell）
-├── 使用说明.md           # 用户文档
-├── 开发构建说明.md       # 构建、Win7 兼容、架构摘要
-└── 开发小结20260902.md   # 开发记录与决策
+└── README.md / LICENSE
 ```
 
 ## 版本
