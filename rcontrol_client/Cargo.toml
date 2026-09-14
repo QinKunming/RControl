@@ -1,0 +1,28 @@
+[package]
+name = "rcontrol_client"
+version.workspace = true
+edition.workspace = true
+
+# 本 crate 需要能以 rustc 1.77 编译 (Windows 7 兼容), 依赖保持低 MSRV
+[dependencies]
+rcontrol_common = { path = "../rcontrol_common" }
+minifb = "0.28"
+zune-jpeg = "0.4"
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Controls",
+    "Win32_System_LibraryLoader",
+    "Win32_System_DataExchange",
+    "Win32_UI_Shell",       # 拖放/Shell 用 (如需要)
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_Storage_FileSystem", # GetLogicalDrives
+    "Win32_System_Time",        # FileTimeToSystemTime / SystemTimeToTzSpecificLocalTime (文件时间本地时区显示)
+    "Win32_System_Threading",   # GetCurrentProcessId (定位自己的窗口)
+    "Win32_System_Memory",
+    "Win32_System_Ole",
+] }
+
+[build-dependencies]
+embed-resource = "2"

@@ -1,0 +1,39 @@
+[package]
+name = "rcontrol_server"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+rcontrol_common = { path = "../rcontrol_common" }
+tokio = { version = "1", features = ["rt-multi-thread", "net", "io-util", "time", "sync", "macros"] }
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_HiDpi",
+    "Win32_System_Threading",
+    "Win32_System_RemoteDesktop",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_Security",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Registry",
+    "Win32_Storage_FileSystem",
+    "Win32_System_DataExchange",
+    "Win32_System_SystemInformation",
+    "Win32_System_Console",
+    "Win32_Security_Authorization",
+    "Win32_System_StationsAndDesktops",
+    "Win32_System_Memory",
+    "Win32_System_Ole",
+    "Win32_System_Time",
+    "Win32_System_WindowsProgramming",
+] }
+windows-service = "0.8"
+jpeg-encoder = "0.6"
+toml = "0.8"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[build-dependencies]
+embed-resource = "2"

@@ -1,0 +1,15 @@
+[package]
+name = "rcontrol_common"
+version.workspace = true
+edition.workspace = true
+
+# 注意: 本 crate 会被 rustc 1.77(Win7 客户端构建)编译, 依赖需保持 MSRV <= 1.77
+[dependencies]
+prost = { version = "0.12", features = ["derive"] }
+aes-gcm = "0.10"
+hkdf = "0.12"
+hmac = "0.12"
+sha2 = "0.10"
+rand = "0.8"
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"

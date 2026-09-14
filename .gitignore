@@ -1,0 +1,14 @@
+# Rust 编译产物
+/target/
+/target_srv/
+/target_test/
+/target_win7/
+
+# 发布成品（二进制走 Release 附件发布，不入库）
+/dist/
+
+# 截图与临时验证图片
+shots/*.png
+
+# 本机个人数据
+hosts.txt
